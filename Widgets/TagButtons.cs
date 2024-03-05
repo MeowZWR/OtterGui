@@ -23,9 +23,10 @@ public class TagButtons
     /// <param name="editedTag">If the return value is greater or equal to 0, the user input for the tag given by the index.</param>
     /// <param name="editable">Controls if the buttons can be used to edit their tags and if new tags can be added, also controls the background color.</param>
     /// <param name="xOffset">An optional offset that is added after the tag as the text wrap point.</param>
+    /// <param name="rightEndOffset">An optional offset that is used to limit how far from the right-edge of the screen the final button can be placed.</param>
     /// <returns>-1 if no change took place yet, the index of an edited tag (or the count of <paramref name="tags"/> for an added one) if an edit was finalized.</returns>
     public int Draw(string label, string description, IReadOnlyCollection<string> tags, out string editedTag, bool editable = true,
-        float xOffset = 0)
+        float xOffset = 0, float rightEndOffset = 0)
     {
         using var id  = ImRaii.PushId(label);
         var       ret = -1;
@@ -65,7 +66,7 @@ public class TagButtons
                 if (editable)
                 {
                     var delete = ImGui.GetIO().KeyCtrl && ImGui.IsItemClicked(ImGuiMouseButton.Right);
-                    ImGuiUtil.HoverTooltip("Hold CTRL and right-click to delete.");
+                    ImGuiUtil.HoverTooltip("按住CTRL并点击右键进行删除。");
                     if (delete)
                     {
                         editedTag = string.Empty;
@@ -88,8 +89,8 @@ public class TagButtons
         }
         else
         {
-            SetPos(ImGui.GetFrameHeight(), x);
-            if (!ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Plus.ToIconString(), new Vector2(ImGui.GetFrameHeight()), "Add Tag...",
+            SetPos(ImGui.GetFrameHeight(), x, rightEndOffset);
+            if (!ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Plus.ToIconString(), new Vector2(ImGui.GetFrameHeight()), "添加标签...",
                     false, true))
                 return ret;
 
@@ -110,9 +111,9 @@ public class TagButtons
         _setFocus = false;
     }
 
-    private static float SetPos(float width, float x)
+    private static float SetPos(float width, float x, float rightEndOffset = 0)
     {
-        if (width + ImGui.GetStyle().ItemSpacing.X >= ImGui.GetContentRegionAvail().X)
+        if (width + ImGui.GetStyle().ItemSpacing.X >= ImGui.GetContentRegionAvail().X - rightEndOffset)
         {
             ImGui.NewLine();
             ImGui.SetCursorPosX(x);

@@ -22,7 +22,7 @@ public static partial class Widget
 
         // Draw a button to return to default.
         ImGui.SameLine();
-        if (ImGuiUtil.DrawDisabledButton("Default", Vector2.Zero, string.Empty, currentColor == defaultColor))
+        if (ImGuiUtil.DrawDisabledButton("默认", Vector2.Zero, string.Empty, currentColor == defaultColor))
         {
             setter(defaultColor);
             ret = true;
@@ -33,7 +33,7 @@ public static partial class Widget
         {
             using var tt = ImRaii.Tooltip();
             ImGui.AlignTextToFramePadding();
-            ImGui.TextUnformatted($"Reset this color to {Functions.ColorBytes(defaultColor)}.");
+            ImGui.TextUnformatted($"重置颜色为 {Functions.ColorBytes(defaultColor)}.");
             var standardV4 = ImGui.ColorConvertU32ToFloat4(currentColor);
             ImGui.SameLine();
             ImGui.ColorEdit4("", ref standardV4, ImGuiColorEditFlags.AlphaPreviewHalf | ImGuiColorEditFlags.NoInputs);

@@ -201,7 +201,7 @@ public partial class FileSystem<T> where T : class
         {
             switch (RenameChild((IWritePath)child, newName))
             {
-                case Result.InvalidOperation: throw new Exception("Can not rename root directory.");
+                case Result.InvalidOperation: throw new Exception("无法重命名根目录。");
                 case Result.ItemExists:
                     newName = newName.IncrementDuplicate();
                     continue;
@@ -219,7 +219,7 @@ public partial class FileSystem<T> where T : class
     {
         switch (RemoveChild((IWritePath)child))
         {
-            case Result.InvalidOperation: throw new Exception("Can not delete root directory.");
+            case Result.InvalidOperation: throw new Exception("无法删除根目录。");
             case Result.Success:
                 Changed?.Invoke(FileSystemChangeType.ObjectRemoved, child, child.Parent, null);
                 return;
@@ -237,7 +237,7 @@ public partial class FileSystem<T> where T : class
                 Changed?.Invoke(FileSystemChangeType.ObjectMoved, child, oldParent, newParent);
                 break;
             case Result.SuccessNothingDone: return;
-            case Result.InvalidOperation:   throw new Exception("Can not move root directory.");
+            case Result.InvalidOperation:   throw new Exception("无法移动根目录。");
             case Result.CircularReference:
                 throw new Exception($"Can not move {child.FullName()} into {newParent.FullName()} since folders can not contain themselves.");
             case Result.ItemExists:

@@ -54,8 +54,8 @@ public static partial class Widget
         {
             using var indent = ImRaii.PushIndent();
             ImGui.SetNextItemWidth(width - indent.Indentation);
-            changes |= ModifierSelector("Additional Modifier",
-                "Set another optional modifier key to be used in conjunction with the first modifier.",
+            changes |= ModifierSelector("额外组合键",
+                "为组合键设置额外的按键。",
                 currentValue.Modifier2, k => copy.SetModifier2(k));
         }
 
@@ -82,14 +82,14 @@ public static partial class Widget
         {
             using var indent = ImRaii.PushIndent();
             ImGui.SetNextItemWidth(width - indent.Indentation);
-            changes |= ModifierSelector("Modifier", "Set an optional modifier key to be used in conjunction with the selected hotkey.",
+            changes |= ModifierSelector("Modifier", "为组合键设置额外的按键。",
                 currentValue.Modifier1,             k => copy.SetModifier1(k));
 
             if (currentValue.Modifier1 != VirtualKey.NO_KEY)
             {
                 ImGui.SetNextItemWidth(width - indent.Indentation);
-                changes |= ModifierSelector("Additional Modifier",
-                    "Set another optional modifier key to be used in conjunction with the selected hotkey and the first modifier.",
+                changes |= ModifierSelector("额外组合键",
+                    "为组合键设置额外的按键。",
                     currentValue.Modifier2, k => copy.SetModifier2(k));
             }
         }

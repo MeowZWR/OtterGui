@@ -136,10 +136,10 @@ public class MessageService(Logger log, UiBuilder uiBuilder, IChatGui chat)
 
         using var table = ImRaii.Table("errors", 5, ImGuiTableFlags.RowBg);
         ImGui.TableSetupColumn("##del",   ImGuiTableColumnFlags.WidthFixed, _buttonSize.X);
-        ImGui.TableSetupColumn("Time",    ImGuiTableColumnFlags.WidthFixed, ImGui.CalcTextSize("00:00:00.0000").X);
+        ImGui.TableSetupColumn("时间",    ImGuiTableColumnFlags.WidthFixed, ImGui.CalcTextSize("00:00:00.0000").X);
         ImGui.TableSetupColumn("##icon",  ImGuiTableColumnFlags.WidthFixed, _buttonSize.X);
         ImGui.TableSetupColumn("##multi", ImGuiTableColumnFlags.WidthFixed, _buttonSize.X);
-        ImGui.TableSetupColumn("Message", ImGuiTableColumnFlags.WidthStretch);
+        ImGui.TableSetupColumn("消息", ImGuiTableColumnFlags.WidthStretch);
 
         ImGui.TableHeadersRow();
         ImGui.TableNextRow();
@@ -164,7 +164,7 @@ public class MessageService(Logger log, UiBuilder uiBuilder, IChatGui chat)
     {
         using var id = ImRaii.PushId(message.Item2);
         ImGui.TableNextColumn();
-        if (ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Trash.ToIconString(), _buttonSize, "Remove this from the list.", false, true))
+        if (ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Trash.ToIconString(), _buttonSize, "从列表中删除。", false, true))
             _deleteTime = message.Item1.Key;
 
         ImGui.TableNextColumn();

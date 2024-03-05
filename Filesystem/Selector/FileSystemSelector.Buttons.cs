@@ -47,7 +47,7 @@ public partial class FileSystemSelector<T, TStateStorage>
         const string newFolderName = "folderName";
 
         if (ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.FolderPlus.ToIconString(), size,
-                "Create a new, empty folder. Can contain '/' to create a directory structure.", false, true))
+                "新建一个空折叠组，名称中可以包含反斜杠'/'来创建目录结构。", false, true))
             ImGui.OpenPopup(newFolderName);
 
         // Does not need to be delayed since it is not in the iteration itself.
@@ -73,11 +73,11 @@ public partial class FileSystemSelector<T, TStateStorage>
         var anySelected = _selectedPaths.Count > 1 || SelectedLeaf != null;
         var name        = _selectedPaths.Count > 1 ? plural : singular;
         var tt = !anySelected
-            ? $"No {plural} selected."
-            : $"Delete the currently selected {name} entirely from your drive.\n"
-          + "This can not be undone.";
+            ? $"没有选中{plural}。"
+            : $"从驱动器删除选中的{name}。\n"
+          + "注意，无法恢复。";
         if (!keys)
-            tt += $"\nHold {modifier} while clicking to delete the {name}.";
+            tt += $"\n按住{modifier}并点击来删除{name}。";
 
         if (ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Trash.ToIconString(), size, tt, !anySelected || !keys, true))
         {

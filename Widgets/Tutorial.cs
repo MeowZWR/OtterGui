@@ -116,7 +116,7 @@ public class Tutorial
         ImGui.TextUnformatted(step.Name);
         ImGui.SameLine(ImGui.GetContentRegionAvail().X - ImGui.GetTextLineHeight());
         int? nextValue = ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.ArrowCircleRight.ToIconString(), new Vector2(ImGui.GetFrameHeight()),
-            "Go to next tutorial step.", false, true)
+            "跳转到教程的下一步", false, true)
             ? next
             : null;
 
@@ -132,14 +132,14 @@ public class Tutorial
 
         ImGui.PopTextWrapPos();
         ImGui.NewLine();
-        var buttonText = next == EndStep ? "Finish" : "Next";
+        var buttonText = next == EndStep ? "完成" : "下一步";
         nextValue = ImGui.Button(buttonText) ? next : nextValue;
         ImGui.SameLine();
-        nextValue = ImGui.Button("Skip Tutorial") ? EndStep : nextValue;
-        ImGuiUtil.HoverTooltip("Skip all current tutorial entries, but show any new ones added later.");
+        nextValue = ImGui.Button("跳过教程") ? EndStep : nextValue;
+        ImGuiUtil.HoverTooltip("跳过当前所有教程，但以后有新教程时会再显示。");
         ImGui.SameLine();
-        nextValue = ImGui.Button("Disable Tutorial") ? -1 : nextValue;
-        ImGuiUtil.HoverTooltip("Disable all tutorial entries.");
+        nextValue = ImGui.Button("禁用教程") ? -1 : nextValue;
+        ImGuiUtil.HoverTooltip("禁用所有教程。");
 
         if (nextValue != null)
         {
