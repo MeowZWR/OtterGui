@@ -166,7 +166,7 @@ public partial class FileSystemSelector<T, TStateStorage>
         var currentPath = leaf.FullName();
         if (ImGui.IsWindowAppearing())
             ImGui.SetKeyboardFocusHere(0);
-        ImGui.TextUnformatted("Rename Search Path or Move:");
+        ImGui.TextUnformatted("重命名搜索路径或移动：");
         if (ImGui.InputText("##Rename", ref currentPath, 256, ImGuiInputTextFlags.EnterReturnsTrue))
         {
             _fsActions.Enqueue(() =>
@@ -177,7 +177,7 @@ public partial class FileSystemSelector<T, TStateStorage>
             ImGui.CloseCurrentPopup();
         }
 
-        ImGuiUtil.HoverTooltip("Enter a full path here to move or rename the search path of the leaf. Creates all required parent directories, if possible.\n\nDoes NOT rename the actual data!");
+        ImGuiUtil.HoverTooltip("在此处输入完整路径以移动或重命名Moodle的搜索路径。如果满足条件，则创建折叠组。\n\n不要重命名实际数据！");
     }
 
     protected void ExpandAll()

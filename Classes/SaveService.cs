@@ -73,7 +73,7 @@ public class SaveServiceBase<T>
         var name = value.ToFilename(FileNames);
         lock (_saveTaskLock)
         {
-            _saveTask = _saveTask == null || _saveTask.IsCompleted ? Task.Run(SaveAction) : _saveTask.ContinueWith(_ => SaveAction(), TaskScheduler.Default);
+            _saveTask = _saveTask == null || _saveTask.IsCompleted ? Task.Run(SaveAction) : _saveTask.ContinueWith(_ => SaveAction());
         }
 
         return;
@@ -125,7 +125,7 @@ public class SaveServiceBase<T>
         var name = value.ToFilename(FileNames);
         lock (_saveTaskLock)
         {
-            _saveTask = _saveTask == null || _saveTask.IsCompleted ? Task.Run(DeleteAction) : _saveTask.ContinueWith(_ => DeleteAction(), TaskScheduler.Default);
+            _saveTask = _saveTask == null || _saveTask.IsCompleted ? Task.Run(DeleteAction) : _saveTask.ContinueWith(_ => DeleteAction());
         }
 
         return;

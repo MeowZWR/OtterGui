@@ -192,7 +192,6 @@ public static partial class Backup
     }
 
     // Compare two streams per byte and return if they are equal.
-    [SkipLocalsInit]
     private static bool Equals(Stream lhs, Stream rhs)
     {
         const int  bufferSize = 1024;
