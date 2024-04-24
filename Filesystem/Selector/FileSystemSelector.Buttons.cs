@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiNET;
 using OtterGui.Classes;
 using OtterGui.Filesystem;

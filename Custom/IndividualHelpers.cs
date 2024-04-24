@@ -1,4 +1,4 @@
-using Dalamud.Game.ClientState.Objects.Enums;
+ï»¿using Dalamud.Game.ClientState.Objects.Enums;
 using ImGuiNET;
 using OtterGui.Raii;
 
@@ -30,12 +30,12 @@ public static class IndividualHelpers
     public static string ToName(this ObjectKind kind)
         => kind switch
         {
-            ObjectKind.None      => "Î´Öª",
-            ObjectKind.BattleNpc => "Õ½¶·NPC",
-            ObjectKind.EventNpc  => "ÊÂ¼þNPC",
-            ObjectKind.MountType => "×øÆï",
-            ObjectKind.Companion => "³èÎï",
-            ObjectKind.Ornament  => "Ê±ÉÐÅäÊÎ",
+            ObjectKind.None      => "æœªçŸ¥",
+            ObjectKind.BattleNpc => "æˆ˜æ–—NPC",
+            ObjectKind.EventNpc  => "äº‹ä»¶NPC",
+            ObjectKind.MountType => "åéª‘",
+            ObjectKind.Companion => "å® ç‰©",
+            ObjectKind.Ornament  => "æ—¶å°šé…é¥°",
             _                    => kind.ToString(),
         };
 }

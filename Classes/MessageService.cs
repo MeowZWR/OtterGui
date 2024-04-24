@@ -1,4 +1,4 @@
-using Dalamud.Game.Text.SeStringHandling;
+Ôªøusing Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Interface;
 using Dalamud.Interface.Components;
 using Dalamud.Interface.Internal.Notifications;
@@ -51,7 +51,7 @@ public class Notification : MessageService.IMessage
         => _ex?.ToString() ?? string.Empty;
 }
 
-public class MessageService(Logger log, UiBuilder uiBuilder, IChatGui chat)
+public class MessageService(Logger log, UiBuilder uiBuilder, IChatGui chat, INotificationManager notificationManager)
     : IReadOnlyDictionary<DateTime, MessageService.IMessage>
 {
     public interface IMessage
@@ -96,11 +96,12 @@ public class MessageService(Logger log, UiBuilder uiBuilder, IChatGui chat)
             => Message;
     }
 
-    public readonly Logger    Log       = log;
-    public readonly UiBuilder UiBuilder = uiBuilder;
-    public readonly IChatGui  Chat      = chat;
+    public readonly Logger               Log                 = log;
+    public readonly UiBuilder            UiBuilder           = uiBuilder;
+    public readonly INotificationManager NotificationManager = notificationManager;
+    public readonly IChatGui             Chat                = chat;
 
-    private readonly SortedDictionary<DateTime, IMessage> _messages   = new();
+    private readonly SortedDictionary<DateTime, IMessage> _messages   = [];
     private          DateTime                             _deleteTime = DateTime.MinValue;
     private          Vector2                              _buttonSize;
 
@@ -121,8 +122,13 @@ public class MessageService(Logger log, UiBuilder uiBuilder, IChatGui chat)
 
         var notificationMessage = message.NotificationMessage;
         if (doNotify && notificationMessage.Length > 0)
-            UiBuilder.AddNotification(message.NotificationMessage, message.NotificationTitle, message.NotificationType,
-                message.NotificationDuration);
+            NotificationManager.AddNotification(new Dalamud.Interface.ImGuiNotification.Notification()
+            {
+                Content         = message.NotificationMessage,
+                Title           = message.NotificationTitle,
+                Type            = message.NotificationType,
+                InitialDuration = TimeSpan.FromMilliseconds(message.NotificationDuration),
+            });
 
         var chatMessage = message.ChatMessage;
         if (doChat && chatMessage.Payloads.Count > 0)
@@ -136,10 +142,10 @@ public class MessageService(Logger log, UiBuilder uiBuilder, IChatGui chat)
 
         using var table = ImRaii.Table("errors", 5, ImGuiTableFlags.RowBg);
         ImGui.TableSetupColumn("##del",   ImGuiTableColumnFlags.WidthFixed, _buttonSize.X);
-        ImGui.TableSetupColumn(" ±º‰",    ImGuiTableColumnFlags.WidthFixed, ImGui.CalcTextSize("00:00:00.0000").X);
+        ImGui.TableSetupColumn("Êó∂Èó¥",    ImGuiTableColumnFlags.WidthFixed, ImGui.CalcTextSize("00:00:00.0000").X);
         ImGui.TableSetupColumn("##icon",  ImGuiTableColumnFlags.WidthFixed, _buttonSize.X);
         ImGui.TableSetupColumn("##multi", ImGuiTableColumnFlags.WidthFixed, _buttonSize.X);
-        ImGui.TableSetupColumn("œ˚œ¢", ImGuiTableColumnFlags.WidthStretch);
+        ImGui.TableSetupColumn("Ê∂àÊÅØ", ImGuiTableColumnFlags.WidthStretch);
 
         ImGui.TableHeadersRow();
         ImGui.TableNextRow();
@@ -164,7 +170,7 @@ public class MessageService(Logger log, UiBuilder uiBuilder, IChatGui chat)
     {
         using var id = ImRaii.PushId(message.Item2);
         ImGui.TableNextColumn();
-        if (ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Trash.ToIconString(), _buttonSize, "¥”¡–±Ì÷–…æ≥˝°£", false, true))
+        if (ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Trash.ToIconString(), _buttonSize, "‰ªéÂàóË°®‰∏≠Âà†Èô§„ÄÇ", false, true))
             _deleteTime = message.Item1.Key;
 
         ImGui.TableNextColumn();

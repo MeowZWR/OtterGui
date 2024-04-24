@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiNET;
 using OtterGui.Raii;
 
@@ -326,7 +326,7 @@ public class ItemSelector<T>
         if (ImGui.Button(FontAwesomeIcon.Clipboard.ToIconString(), Vector2.UnitX * width))
             ImGui.OpenPopup(newNamePopupImport);
         using var font = ImRaii.PushFont(UiBuilder.DefaultFont);
-        ImGuiUtil.HoverTooltip("Import from Clipboard");
+        ImGuiUtil.HoverTooltip("从剪贴板导入");
 
         if (!OpenNameField(newNamePopupImport, out var newName))
             return;
@@ -376,7 +376,7 @@ public class ItemSelector<T>
         => ImGui.GetIO().KeyCtrl;
 
     protected virtual string DeleteButtonTooltip()
-        => "Delete Current Selection. Hold Control while clicking.";
+        => "点击时按住Ctrl键来删除当前选中项。";
 
     private void DrawDeleteButton(float width)
     {

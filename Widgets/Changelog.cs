@@ -160,7 +160,7 @@ public sealed class Changelog : Window
 
     private void DrawUnderstoodButton(float width)
     {
-        if (!ImGui.Button("明白了", new Vector2(width, 0)))
+        if (!ImGui.Button("知道了", new Vector2(width, 0)))
             return;
 
         if (_lastVersion != _entries.Count)

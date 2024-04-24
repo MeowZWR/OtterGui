@@ -1,4 +1,4 @@
-using ImGuiNET;
+ï»¿using ImGuiNET;
 
 namespace OtterGui.Widgets;
 
@@ -29,7 +29,7 @@ public static partial class Widget
         }
 
         ImGui.SetNextItemWidth(-1);
-        if (ImGui.InputTextWithHint($"##{label}_new", "Ìí¼ÓĞÂÎïÆ·...", ref newOption, 64, ImGuiInputTextFlags.EnterReturnsTrue))
+        if (ImGui.InputTextWithHint($"##{label}_new", "æ·»åŠ æ–°ç‰©å“...", ref newOption, 64, ImGuiInputTextFlags.EnterReturnsTrue))
         {
             currentItem = numItems;
             newName     = newOption;

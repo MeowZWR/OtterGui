@@ -1,4 +1,4 @@
-namespace OtterGui.Filesystem;
+﻿namespace OtterGui.Filesystem;
 
 public enum SortMode
 {

@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using Dalamud.Interface.Utility;
 using ImGuiNET;
 using OtterGui.Raii;
@@ -49,6 +49,7 @@ public class TagButtons
         using var c = ImRaii.PushColor(ImGuiCol.ButtonHovered, color, !editable)
             .Push(ImGuiCol.ButtonActive, color, !editable)
             .Push(ImGuiCol.Button,       color);
+        rightEndOffset += 4 * ImGuiHelpers.GlobalScale;
         foreach (var (tag, idx) in tags.WithIndex())
         {
             using var id2 = ImRaii.PushId(idx);
@@ -60,7 +61,7 @@ public class TagButtons
             }
             else
             {
-                SetPosButton(tag, x);
+                SetPosButton(tag, x, rightEndOffset);
                 Button(tag, idx, editable);
 
                 if (editable)
@@ -122,8 +123,8 @@ public class TagButtons
         return width;
     }
 
-    private static float SetPosButton(string tag, float x)
-        => SetPos(ImGui.CalcTextSize(tag).X + ImGui.GetStyle().FramePadding.X * 2, x);
+    private static float SetPosButton(string tag, float x, float rightEndOffset = 0)
+        => SetPos(ImGui.CalcTextSize(tag).X + ImGui.GetStyle().FramePadding.X * 2, x, rightEndOffset);
 
     private static float SetPosText(string tag, float x)
         => SetPos(ImGui.CalcTextSize(tag).X + ImGui.GetStyle().FramePadding.X * 2 + 15 * ImGuiHelpers.GlobalScale, x);
@@ -160,10 +161,12 @@ public class TagButtons
         if (tooltip.Length == 0)
             return;
 
-        ImGui.AlignTextToFramePadding();
         using (var font = ImRaii.PushFont(UiBuilder.IconFont))
         {
             using var style = ImRaii.PushStyle(ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing);
+            ImGui.AlignTextToFramePadding();
+            // The symbol is cut off on the left side for some reason otherwise.
+            ImGui.SetCursorPosX(ImGui.GetCursorPosX() + ImGuiHelpers.GlobalScale);
             ImGui.TextDisabled(FontAwesomeIcon.InfoCircle.ToIconString());
         }
 

@@ -1,4 +1,4 @@
-using Dalamud.Interface.Utility;
+ï»¿using Dalamud.Interface.Utility;
 using ImGuiNET;
 using OtterGui.Raii;
 
@@ -36,7 +36,7 @@ public class ColumnFlags<T, TItem> : Column<TItem> where T : struct, Enum
         }
 
         if (!all && ImGui.IsItemHovered())
-            ImGui.SetTooltip("ÓÒ¼üµ¥»÷Çå³ıÉ¸Ñ¡¡£");
+            ImGui.SetTooltip("å³é”®å•å‡»æ¸…é™¤ç­›é€‰ã€‚");
 
         if (!combo)
             return false;
@@ -44,7 +44,7 @@ public class ColumnFlags<T, TItem> : Column<TItem> where T : struct, Enum
         color.Pop();
 
         var ret = false;
-        if (ImGui.Checkbox("ÆôÓÃÈ«²¿", ref all))
+        if (ImGui.Checkbox("å¯ç”¨å…¨éƒ¨", ref all))
         {
             SetValue(AllFlags, all);
             ret = true;
