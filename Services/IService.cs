@@ -1,5 +1,8 @@
+using JetBrains.Annotations;
+
 namespace OtterGui.Services;
 
+[UsedImplicitly(ImplicitUseTargetFlags.Itself | ImplicitUseTargetFlags.WithInheritors)]
 public interface IService
 { }
 
@@ -43,4 +46,7 @@ public interface ILoadService : IService
 }
 
 public interface IUiService : IService
+{ }
+
+public interface IApiService : IService
 { }
