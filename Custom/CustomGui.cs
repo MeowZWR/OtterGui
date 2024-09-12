@@ -27,7 +27,7 @@ public static class CustomGui
         const string address = @"https://discord.gg/QvrVye3";
         using var color = ImRaii.PushColor(ImGuiCol.Button, DiscordColor);
 
-        DrawLinkButton(message, "加入国服MOD频道", address, width, $"访问{address}\n许多MOD的原作者都提供免费下载，\n请不要从倒卖者（如某火狐、某鱼、某宝等）处花钱购买。");
+        DrawLinkButton(message, "加入国服MOD频道", address, width, $"访问{address}\n许多MOD的原作者都提供免费下载，\n请不要从倒卖者（某火狐、某鱼、某宝等）处花钱购买。");
     }
 
     /// <summary> Draw the button that opens the ReniGuide. </summary>

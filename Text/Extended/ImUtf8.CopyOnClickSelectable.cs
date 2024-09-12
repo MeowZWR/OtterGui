@@ -1,4 +1,4 @@
-using OtterGui.Text.HelperObjects;
+﻿using OtterGui.Text.HelperObjects;
 
 namespace OtterGui.Text;
 
@@ -150,39 +150,39 @@ public static partial class ImUtf8
     /// <inheritdoc cref="CopyOnClickSelectable(ReadOnlySpan{byte},ReadOnlySpan{byte},ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static void CopyOnClickSelectable(ReadOnlySpan<byte> text, ReadOnlySpan<byte> copiedText)
-        => CopyOnClickSelectable(text, copiedText, "Click to copy to clipboard."u8);
+        => CopyOnClickSelectable(text, copiedText, "点击复制到剪贴板。"u8);
 
     /// <inheritdoc cref="CopyOnClickSelectable(ReadOnlySpan{char},ReadOnlySpan{byte},ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static void CopyOnClickSelectable(ReadOnlySpan<char> text, ReadOnlySpan<byte> copiedText)
-        => CopyOnClickSelectable(text, copiedText, "Click to copy to clipboard."u8);
+        => CopyOnClickSelectable(text, copiedText, "点击复制到剪贴板。"u8);
 
     /// <inheritdoc cref="CopyOnClickSelectable(ref Utf8StringHandler{TextStringHandlerBuffer},ReadOnlySpan{byte},ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static void CopyOnClickSelectable(ref Utf8StringHandler<TextStringHandlerBuffer> text, ReadOnlySpan<byte> copiedText)
-        => CopyOnClickSelectable(ref text, copiedText, "Click to copy to clipboard."u8);
+        => CopyOnClickSelectable(ref text, copiedText, "点击复制到剪贴板。"u8);
 
 
     /// <inheritdoc cref="CopyOnClickSelectable(ReadOnlySpan{byte},ReadOnlySpan{char},ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static void CopyOnClickSelectable(ReadOnlySpan<byte> text, ReadOnlySpan<char> copiedText)
-        => CopyOnClickSelectable(text, copiedText, "Click to copy to clipboard."u8);
+        => CopyOnClickSelectable(text, copiedText, "点击复制到剪贴板。"u8);
 
     /// <inheritdoc cref="CopyOnClickSelectable(ReadOnlySpan{char},ReadOnlySpan{char},ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static void CopyOnClickSelectable(ReadOnlySpan<char> text, ReadOnlySpan<char> copiedText)
-        => CopyOnClickSelectable(text, copiedText, "Click to copy to clipboard."u8);
+        => CopyOnClickSelectable(text, copiedText, "点击复制到剪贴板。"u8);
 
     /// <inheritdoc cref="CopyOnClickSelectable(ref Utf8StringHandler{TextStringHandlerBuffer},ReadOnlySpan{char},ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static void CopyOnClickSelectable(ref Utf8StringHandler<TextStringHandlerBuffer> text, ReadOnlySpan<char> copiedText)
-        => CopyOnClickSelectable(ref text, copiedText, "Click to copy to clipboard."u8);
+        => CopyOnClickSelectable(ref text, copiedText, "点击复制到剪贴板。"u8);
 
 
     /// <inheritdoc cref="CopyOnClickSelectable(ReadOnlySpan{byte},ReadOnlySpan{byte},ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static void CopyOnClickSelectable(ReadOnlySpan<byte> text)
-        => CopyOnClickSelectable(text, text, "Click to copy to clipboard."u8);
+        => CopyOnClickSelectable(text, text, "点击复制到剪贴板。"u8);
 
     /// <inheritdoc cref="CopyOnClickSelectable(ReadOnlySpan{char},ReadOnlySpan{byte},ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -201,7 +201,7 @@ public static partial class ImUtf8
             }
         }
 
-        HoverTooltip("Click to copy to clipboard."u8);
+        HoverTooltip("点击复制到剪贴板。"u8);
     }
 
     /// <inheritdoc cref="CopyOnClickSelectable(ref Utf8StringHandler{TextStringHandlerBuffer},ReadOnlySpan{byte},ReadOnlySpan{byte})"/>
@@ -221,6 +221,6 @@ public static partial class ImUtf8
             }
         }
 
-        HoverTooltip("Click to copy to clipboard."u8);
+        HoverTooltip("点击复制到剪贴板。"u8);
     }
 }
