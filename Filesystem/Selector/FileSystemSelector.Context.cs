@@ -83,31 +83,31 @@ public partial class FileSystemSelector<T, TStateStorage>
     // Protected so they can be removed by inheritors.
     protected void DissolveFolder(FileSystem<T>.Folder folder)
     {
-        if (ImGui.MenuItem("Dissolve Folder"))
+        if (ImGui.MenuItem("解除折叠组"))
             _fsActions.Enqueue(() => FileSystem.Merge(folder, folder.Parent));
-        ImGuiUtil.HoverTooltip("Remove this folder and move all its children to its parent-folder, if possible.");
+        ImGuiUtil.HoverTooltip("如果可以，将此折叠组的所有文件移至上级折叠组。");
     }
 
     protected void ExpandAllDescendants(FileSystem<T>.Folder folder)
     {
-        if (ImGui.MenuItem("Expand All Descendants"))
+        if (ImGui.MenuItem("展开所有下级折叠组"))
         {
             var idx = _currentIndex;
             _fsActions.Enqueue(() => ToggleDescendants(folder, idx, true));
         }
 
-        ImGuiUtil.HoverTooltip("Successively expand all folders that descend from this folder, including itself.");
+        ImGuiUtil.HoverTooltip("展开此折叠组及其包含的下级折叠组。");
     }
 
     protected void CollapseAllDescendants(FileSystem<T>.Folder folder)
     {
-        if (ImGui.MenuItem("Collapse All Descendants"))
+        if (ImGui.MenuItem("收起所有下级折叠组"))
         {
             var idx = _currentIndex;
             _fsActions.Enqueue(() => ToggleDescendants(folder, idx, false));
         }
 
-        ImGuiUtil.HoverTooltip("Successively collapse all folders that descend from this folder, including itself.");
+        ImGuiUtil.HoverTooltip("收起此折叠组及其包含的下级折叠组。");
     }
 
     protected void RenameFolder(FileSystem<T>.Folder folder)
@@ -120,14 +120,14 @@ public partial class FileSystemSelector<T, TStateStorage>
                 _filterDirty |= ExpandAncestors(folder);
             });
 
-        ImGuiUtil.HoverTooltip("Enter a full path here to move or rename the folder. Creates all required parent directories, if possible.");
+        ImGuiUtil.HoverTooltip("在此输入完整路径来移动或重命名折叠组，如果达成条件，则创建折叠组。");
     }
 
     protected void SetQuickMove(FileSystem<T>.Folder folder, int which, string current, Action<string> onSelect)
     {
-        if (ImGui.MenuItem($"Set as Quick Move Folder #{which + 1}"))
+        if (ImGui.MenuItem($"设置为快速移动折叠组 #{which + 1}"))
             onSelect(folder.FullName());
-        ImGuiUtil.HoverTooltip($"Set this folder as a quick move location{(current.Length > 0 ? $"instead of {current}." : ".")}");
+        ImGuiUtil.HoverTooltip($"设置此折叠组为快速移动位置{(current.Length > 0 ? $"取代 {current} 。" : "。")}");
     }
 
     protected void ClearQuickMove(int which, string current, Action onSelect)
@@ -135,9 +135,9 @@ public partial class FileSystemSelector<T, TStateStorage>
         if (current.Length == 0)
             return;
 
-        if (ImGui.MenuItem($"Clear Quick Move Folder #{which + 1}"))
+        if (ImGui.MenuItem($"清除快速移动折叠组 #{which + 1}"))
             onSelect();
-        ImGuiUtil.HoverTooltip($"Clear the current quick move assignment of {current}.");
+        ImGuiUtil.HoverTooltip($"清除当前分配的快速移动折叠组：{current}。");
     }
 
     protected void QuickMove(FileSystem<T>.Leaf leaf, params string[] folders)
@@ -151,7 +151,7 @@ public partial class FileSystemSelector<T, TStateStorage>
             if (FileSystem.Equal(targetPath, currentPath))
                 continue;
 
-            if (ImGui.MenuItem($"Move to {folder}"))
+            if (ImGui.MenuItem($"移动到 {folder}"))
                 _fsActions.Enqueue(() =>
                 {
                     foreach(var path in _selectedPaths.OfType<FileSystem<T>.Leaf>())
@@ -161,7 +161,7 @@ public partial class FileSystemSelector<T, TStateStorage>
                 });
         }
 
-        ImGuiUtil.HoverTooltip("Move the selected objects to a previously set-up quick move location, if possible.");
+        ImGuiUtil.HoverTooltip("如果可能，将此模组移动到先前设置的快速移动折叠组。");
     }
 
     protected void RenameLeaf(FileSystem<T>.Leaf leaf)
@@ -169,7 +169,7 @@ public partial class FileSystemSelector<T, TStateStorage>
         var currentPath = leaf.FullName();
         if (ImGui.IsWindowAppearing())
             ImGui.SetKeyboardFocusHere(0);
-        ImGui.TextUnformatted("Rename Search Path or Move:");
+        ImGui.TextUnformatted("重命名搜索路径或移动：");
         if (ImGui.InputText("##Rename", ref currentPath, 256, ImGuiInputTextFlags.EnterReturnsTrue))
         {
             _fsActions.Enqueue(() =>
@@ -180,18 +180,18 @@ public partial class FileSystemSelector<T, TStateStorage>
             ImGui.CloseCurrentPopup();
         }
 
-        ImGuiUtil.HoverTooltip("Enter a full path here to move or rename the search path of the leaf. Creates all required parent directories, if possible.\n\nDoes NOT rename the actual data!");
+        ImGuiUtil.HoverTooltip("在此输入完整路径来移动或重命名折叠组，如果达成条件，则创建折叠组。");
     }
 
     protected void ExpandAll()
     {
-        if (ImGui.Selectable("Expand All Directories"))
+        if (ImGui.Selectable("展开全部折叠组"))
             _fsActions.Enqueue(() => ToggleDescendants(FileSystem.Root, -1, true));
     }
 
     protected void CollapseAll()
     {
-        if (ImGui.Selectable("Collapse All Directories"))
+        if (ImGui.Selectable("收起全部折叠组"))
             _fsActions.Enqueue(() =>
             {
                 ToggleDescendants(FileSystem.Root, -1, false);

@@ -30,12 +30,12 @@ public static class IndividualHelpers
     public static string ToName(this ObjectKind kind)
         => kind switch
         {
-            ObjectKind.None      => "Unknown",
-            ObjectKind.BattleNpc => "Battle NPC",
-            ObjectKind.EventNpc  => "Event NPC",
-            ObjectKind.MountType => "Mount",
-            ObjectKind.Companion => "Companion",
-            ObjectKind.Ornament  => "Accessory",
+            ObjectKind.None      => "未知",
+            ObjectKind.BattleNpc => "战斗NPC",
+            ObjectKind.EventNpc  => "事件NPC",
+            ObjectKind.MountType => "坐骑",
+            ObjectKind.Companion => "宠物",
+            ObjectKind.Ornament  => "时尚配饰",
             _                    => kind.ToString(),
         };
 }

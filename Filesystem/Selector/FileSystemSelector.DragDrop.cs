@@ -21,8 +21,8 @@ public partial class FileSystemSelector<T, TStateStorage>
         ImGui.SetDragDropPayload(MoveLabel, nint.Zero, 0);
         _movedPathsDragDrop = MoveList(path);
         ImGui.TextUnformatted(_movedPathsDragDropCache.Count == 1
-            ? $"Moving {_movedPathsDragDropCache.Keys.First()}..."
-            : $"Moving ...\n\t - {string.Join("\n\t - ", _movedPathsDragDrop.Select(kvp => kvp.Key))}");
+            ? $"移动 {_movedPathsDragDropCache.Keys.First()}..."
+            : $"移动 ...\n\t - {string.Join("\n\t - ", _movedPathsDragDrop.Select(kvp => kvp.Key))}");
     }
 
     private void DragDropTarget(FileSystem<T>.IPath path)

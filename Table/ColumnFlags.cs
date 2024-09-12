@@ -43,7 +43,7 @@ public class ColumnFlags<T, TItem> : Column<TItem> where T : struct, Enum
         }
 
         if (!all && ImGui.IsItemHovered())
-            ImGui.SetTooltip("Right-click to clear filters.");
+            ImGui.SetTooltip("右键单击清除筛选。");
 
         if (!combo)
             return false;
@@ -51,7 +51,7 @@ public class ColumnFlags<T, TItem> : Column<TItem> where T : struct, Enum
         color.Pop();
 
         var ret = false;
-        if (ImGui.Checkbox("Enable All", ref all))
+        if (ImGui.Checkbox("启用全部", ref all))
         {
             SetValue(AllFlags, all);
             ret = true;

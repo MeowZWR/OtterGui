@@ -18,9 +18,9 @@ public sealed class Changelog : Window
     {
         return type switch
         {
-            ChangeLogDisplayType.New           => "Show New Changelogs (Recommended)",
-            ChangeLogDisplayType.HighlightOnly => "Only Show Important Changelogs",
-            ChangeLogDisplayType.Never         => "Never Show Changelogs (Dangerous)",
+            ChangeLogDisplayType.New           => "显示新的更新日志(建议)",
+            ChangeLogDisplayType.HighlightOnly => "仅显示重要的更新日志",
+            ChangeLogDisplayType.Never         => "不显示更新日志(有风险)",
             _                                  => string.Empty,
         };
     }
@@ -160,7 +160,7 @@ public sealed class Changelog : Window
 
     private void DrawUnderstoodButton(float width)
     {
-        if (!ImGui.Button("Understood", new Vector2(width, 0)))
+        if (!ImGui.Button("知道了", new Vector2(width, 0)))
             return;
 
         if (_lastVersion != _entries.Count)
