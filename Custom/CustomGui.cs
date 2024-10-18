@@ -18,7 +18,7 @@ public static class CustomGui
         const string address = @"https://discord.gg/kVva7DHV4r";
         using var    color   = ImRaii.PushColor(ImGuiCol.Button, DiscordColor);
 
-        DrawLinkButton(message, "加入Discord寻求支持", address, width, $"访问{address}\n插件开发者的频道。");
+        DrawLinkButton(message, "加入Discord寻求支持", address, width, $"访问{address}\n插件开发者的频道。\n请注意他们不对国服作支持，有问题最好先去国服MOD频道咨询。");
     }
 
     /// <summary> Draw a button to open the cn discord server. </summary>
