@@ -74,7 +74,7 @@ public struct DoubleModifier : IEquatable<DoubleModifier>
 
     public override string ToString()
         => Modifier2 != ModifierHotkey.NoKey
-            ? $"{Modifier1}和{Modifier2}"
+            ? $"{Modifier1} 和 {Modifier2}"
             : Modifier1.ToString();
 
     public bool IsActive()
