@@ -1,6 +1,8 @@
 using ImGuiNET;
+using OtterGui.Extensions;
 using OtterGui.Filesystem;
 using OtterGui.Raii;
+using OtterGui.Text;
 
 namespace OtterGui.FileSystem.Selector;
 
@@ -72,8 +74,10 @@ public partial class FileSystemSelector<T, TStateStorage>
     {
         SubscribeRightClickFolder(ExpandAllDescendants,   100);
         SubscribeRightClickFolder(CollapseAllDescendants, 100);
+        SubscribeRightClickFolder(SetLocked,              900);
         SubscribeRightClickFolder(DissolveFolder,         999);
         SubscribeRightClickFolder(RenameFolder,           1000);
+        SubscribeRightClickLeaf(SetLocked,  900);
         SubscribeRightClickLeaf(RenameLeaf, 1000);
         SubscribeRightClickMain(ExpandAll,   1);
         SubscribeRightClickMain(CollapseAll, 1);
@@ -81,6 +85,14 @@ public partial class FileSystemSelector<T, TStateStorage>
 
     // Default entries for the folder context menu.
     // Protected so they can be removed by inheritors.
+    protected void SetLocked(FileSystem<T>.IPath path)
+    {
+        if (ImUtf8.MenuItem(path.IsLocked ? "Unlock"u8 : "Lock"u8))
+            FileSystem.ChangeLockState(path, !path.IsLocked);
+        ImUtf8.HoverTooltip(
+            "Locking an item prevents this item from being dragged to other positions. It does not prevent any other manipulations of the item."u8);
+    }
+
     protected void DissolveFolder(FileSystem<T>.Folder folder)
     {
         if (ImGui.MenuItem("解除折叠组"))
@@ -154,7 +166,7 @@ public partial class FileSystemSelector<T, TStateStorage>
             if (ImGui.MenuItem($"移动到 {folder}"))
                 _fsActions.Enqueue(() =>
                 {
-                    foreach(var path in _selectedPaths.OfType<FileSystem<T>.Leaf>())
+                    foreach (var path in _selectedPaths.OfType<FileSystem<T>.Leaf>())
                         FileSystem.RenameAndMove(path, $"{folder}/{path.Name}");
                     FileSystem.RenameAndMove(leaf, targetPath);
                     _filterDirty |= ExpandAncestors(leaf);
@@ -180,7 +192,8 @@ public partial class FileSystemSelector<T, TStateStorage>
             ImGui.CloseCurrentPopup();
         }
 
-        ImGuiUtil.HoverTooltip("在此输入完整路径来移动或重命名折叠组，如果达成条件，则创建折叠组。");
+        ImGuiUtil.HoverTooltip(
+            "在此输入完整路径来移动或重命名折叠组，如果达成条件，则创建折叠组。\n\n不会重命名实际数据！");
     }
 
     protected void ExpandAll()

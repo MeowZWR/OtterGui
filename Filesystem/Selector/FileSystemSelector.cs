@@ -1,5 +1,6 @@
 using Dalamud.Plugin.Services;
 using ImGuiNET;
+using OtterGui.Extensions;
 using OtterGui.Filesystem;
 using OtterGui.Log;
 using OtterGui.Raii;
@@ -162,6 +163,7 @@ public partial class FileSystemSelector<T, TStateStorage> where T : class where 
         {
             DrawPopups();
             using var group = ImRaii.Group();
+            width = MathF.Round(width);
             if (DrawList(width))
             {
                 if (width < 0)
