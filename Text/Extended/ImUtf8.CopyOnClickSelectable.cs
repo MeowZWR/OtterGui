@@ -1,4 +1,6 @@
-﻿using OtterGui.Text.HelperObjects;
+using Dalamud.Interface.Utility.Raii;
+using ImGuiNET;
+using OtterGui.Text.HelperObjects;
 
 namespace OtterGui.Text;
 
@@ -218,6 +220,29 @@ public static partial class ImUtf8
             catch
             {
                 // ignored
+            }
+        }
+
+        HoverTooltip("点击复制到剪贴板。"u8);
+    }
+
+    /// <inheritdoc cref="CopyOnClickSelectable(ref Utf8StringHandler{TextStringHandlerBuffer},ReadOnlySpan{byte},ReadOnlySpan{byte})"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static void CopyOnClickSelectable(ref Utf8StringHandler<TextStringHandlerBuffer> text, ImFontPtr font)
+    {
+        var t = text.Span();
+        using (ImRaii.PushFont(font))
+        {
+            if (Selectable(t))
+            {
+                try
+                {
+                    SetClipboardText(t);
+                }
+                catch
+                {
+                    // ignored
+                }
             }
         }
 
