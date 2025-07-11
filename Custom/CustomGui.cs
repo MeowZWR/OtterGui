@@ -165,6 +165,19 @@ public static class CustomGui
         }
     }
 
+    /// <summary> Draw a single guide button. </summary>
+    public static void DrawGuideButton(MessageService message, float width)
+    {
+        const string address = @"https://reniguide.info/";
+        using var color = ImRaii.PushColor(ImGuiCol.Button, ReniColorButton)
+            .Push(ImGuiCol.ButtonHovered, ReniColorHovered)
+            .Push(ImGuiCol.ButtonActive,  ReniColorActive);
+
+        DrawLinkButton(message, "新手指南", address, width,
+            $"访问{address}\nSerenity制作的基于图像和文本的指南，包含大部分Penumbra功能。\n"
+          + "不是插件作者官方指南，但一般不会过时。");
+    }
+
     /// <summary> Draw a split button for guide and tutorial reset. </summary>
     public static void DrawGuideTutorialSplitButton(MessageService message, Vector2 size, Action resetTutorialAction)
     {
