@@ -189,7 +189,7 @@ public partial class FileSystemSelector<T, TStateStorage> where T : class where 
     }
 
     // Default flags to use for custom leaf nodes.
-    protected const ImGuiTreeNodeFlags LeafFlags = ImGuiTreeNodeFlags.Leaf | ImGuiTreeNodeFlags.Bullet | ImGuiTreeNodeFlags.NoTreePushOnOpen | ImGuiTreeNodeFlags.SpanFullWidth;
+    protected const ImGuiTreeNodeFlags LeafFlags = ImGuiTreeNodeFlags.Leaf | ImGuiTreeNodeFlags.Bullet | ImGuiTreeNodeFlags.NoTreePushOnOpen;
 
     // Customization point: Should always create a tree node using LeafFlags (with possible selection.)
     // But can add additional icons or buttons if wanted.
