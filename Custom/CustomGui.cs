@@ -129,7 +129,7 @@ public static class CustomGui
                     Hovered    = ImGui.GetColorU32(ImGuiCol.ButtonHovered),
                     Background = ImGui.GetColorU32(ImGuiCol.Button),
                     Tooltip =
-                        "访问 https://discord.gg/QvrVye3\n国服模组社群。\n许多MOD的原作者都提供免费下载，\n请不要从倒卖者（某火狐、某鱼、某宝等）处花钱购买。"u8,
+                        "访问 https://discord.gg/QvrVye3\n国服模组社群。\n许多MOD都提供免费下载，\n请不要从倒卖者处花钱购买。"u8,
                 }, size, MixColors(DiscordColor, ImGui.GetColorU32(ImGuiCol.Button))))
         {
             case 1:
