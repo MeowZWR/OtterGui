@@ -46,9 +46,9 @@ public sealed class Changelog : Window
     {
         return type switch
         {
-            ChangeLogDisplayType.New           => "Show New Changelogs (Recommended)"u8,
-            ChangeLogDisplayType.HighlightOnly => "Only Show Important Changelogs"u8,
-            ChangeLogDisplayType.Never         => "Never Show Changelogs (Dangerous)"u8,
+            ChangeLogDisplayType.New           => "显示新更新日志（推荐）"u8,
+            ChangeLogDisplayType.HighlightOnly => "仅显示重要更新日志"u8,
+            ChangeLogDisplayType.Never         => "从不显示更新日志（危险）"u8,
             _                                  => ""u8,
         };
     }
