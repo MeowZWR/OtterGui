@@ -150,7 +150,7 @@ public class ItemSelector<T>
             Current = default;
     }
 
-    private void SetCurrent(int idx)
+    public void SetCurrent(int idx)
     {
         if (idx < Items.Count)
         {
